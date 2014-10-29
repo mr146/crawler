@@ -12,14 +12,17 @@ public class Settings {
     public static String targetDirectory;
 
     public static void initialize(String[] args) {
-        maxDepth = 3;
-        maxThreads = 1;
-        maxPages = 500;
-        targetDirectory = "/Users/den/Desktop/tmp/";
         try {
-            startUrl = new URL("http://acm.timus.ru");
+            startUrl = new URL(args[0]);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        maxDepth = Integer.parseInt(args[1]);
+        maxPages = Integer.parseInt(args[2]);
+        targetDirectory = args[3];
+        if(args.length > 4)
+            maxThreads = Integer.parseInt(args[4]);
+        else
+            maxThreads = 5;
     }
 }

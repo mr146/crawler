@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * Created by den on 29.10.14.
  */
-public class PageLoader implements Runnable{
+public class PageLoader implements Runnable {
     private UrlsQueue queue;
     private URL url;
     private int currentDepth;
@@ -33,12 +33,13 @@ public class PageLoader implements Runnable{
             return;
         }
         Elements href = document.getElementsByAttribute("href");
+        FileOutputStream os = null;
         try {
             String filename = Settings.targetDirectory + UUID.randomUUID().toString() + ".html";
             String documentValue = document.toString();
             File file = new File(filename);
             file.createNewFile();
-            FileOutputStream os = new FileOutputStream(file);
+            os = new FileOutputStream(file);
             os.write(documentValue.getBytes());
             os.close();
         } catch (IOException e) {
